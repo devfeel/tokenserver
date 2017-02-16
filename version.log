@@ -1,0 +1,9 @@
+tokenserver - 通用Token服务
+
+V1.1
+1、新增GlobalID生成器功能，第一版支持uuid、number、timenumber
+2、2017-02-16 11:00 by pxm
+
+V1.0
+1、基础版本，支持token创建\查询\验证三类接口
+2、2017-02-10 15:00 by pxm
