@@ -1,9 +1,9 @@
 package httpserver
 
 import (
-	"devfeel/tokenserver/httpserver/handlers/global"
-	"devfeel/tokenserver/httpserver/handlers/token"
 	"github.com/devfeel/dotweb"
+	"github.com/devfeel/tokenserver/httpserver/handlers/global"
+	"github.com/devfeel/tokenserver/httpserver/handlers/token"
 )
 
 func InitRoute(dotweb *dotweb.Dotweb) {

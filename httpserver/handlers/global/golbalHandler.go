@@ -1,15 +1,15 @@
 package global
 
 import (
-	"devfeel/tokenserver/config"
-	"devfeel/tokenserver/const"
-	"devfeel/tokenserver/framework/crypto"
-	"devfeel/tokenserver/framework/json"
-	"devfeel/tokenserver/framework/log"
-	"devfeel/tokenserver/framework/redis"
-	"devfeel/tokenserver/httpserver/model"
 	"fmt"
 	"github.com/devfeel/dotweb"
+	"github.com/devfeel/tokenserver/config"
+	"github.com/devfeel/tokenserver/const"
+	"github.com/devfeel/tokenserver/framework/crypto"
+	"github.com/devfeel/tokenserver/framework/json"
+	"github.com/devfeel/tokenserver/framework/log"
+	"github.com/devfeel/tokenserver/framework/redis"
+	"github.com/devfeel/tokenserver/httpserver/model"
 	"strconv"
 	"time"
 )

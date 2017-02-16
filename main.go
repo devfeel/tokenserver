@@ -1,12 +1,12 @@
 package main
 
 import (
-	"devfeel/tokenserver/config"
-	"devfeel/tokenserver/framework/file"
-	"devfeel/tokenserver/framework/log"
-	"devfeel/tokenserver/httpserver"
 	"flag"
 	"fmt"
+	"github.com/devfeel/tokenserver/config"
+	"github.com/devfeel/tokenserver/framework/file"
+	"github.com/devfeel/tokenserver/framework/log"
+	"github.com/devfeel/tokenserver/httpserver"
 	"os"
 	"os/signal"
 	"runtime"

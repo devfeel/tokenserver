@@ -1,9 +1,9 @@
 package config
 
 import (
-	"devfeel/tokenserver/framework/json"
-	"devfeel/tokenserver/framework/log"
 	"encoding/xml"
+	"github.com/devfeel/tokenserver/framework/json"
+	"github.com/devfeel/tokenserver/framework/log"
 	"io/ioutil"
 	"os"
 	"sync"

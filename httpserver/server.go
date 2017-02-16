@@ -1,10 +1,10 @@
 package httpserver
 
 import (
-	"devfeel/tokenserver/config"
-	"devfeel/tokenserver/framework/log"
 	"fmt"
 	"github.com/devfeel/dotweb"
+	"github.com/devfeel/tokenserver/config"
+	"github.com/devfeel/tokenserver/framework/log"
 	"strconv"
 )
 
