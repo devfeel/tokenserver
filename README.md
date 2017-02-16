@@ -21,9 +21,11 @@ token服务，提供token一致性服务以及相关的全局ID生成服务等
 ```
 
 ##运行说明
-假设执行文件安装在/home/devfeel/tokenserver/目录下，则可直接执行启动
+假设执行文件安装在/home/devfeel/tokenserver/目录下：
 <br>
--tokenserver    可执行文件
--innerlogs      程序内部日志目录
--logs           程序业务日志目录
--app.conf       程序配置文件
+* tokenserver    可执行文件
+* innerlogs      程序内部日志目录
+* logs           程序业务日志目录
+* app.conf       程序配置文件
+
+*默认配置下，会监听两个端口，一个为业务端口，一个为pprof端口
