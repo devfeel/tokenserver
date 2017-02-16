@@ -1,5 +1,5 @@
 ##1、Create Token:
-<br>描述：创建Token
+描述：创建Token
 <br>接口: http://127.0.0.1/token/create
 <br>HttpMethod：Post
 <br>Post Param：TokenInfo
@@ -39,7 +39,7 @@ result:
 **************************************************************************************************
 
 ##2、Query Token:
-<br>描述：查询token,不影响token有效性，调用完token依然存在，如需一次性token验证，请调用verify方法
+描述：查询token,不影响token有效性，调用完token依然存在，如需一次性token验证，请调用verify方法
 <br>接口:http://192.168.8.178:8201/token/query?appid=?&token=?
 <br>HttpMethod：Get
 <br>Get Param：
@@ -69,7 +69,7 @@ type TokenInfo struct {
 **************************************************************************************************
 
 ##3、Verify Token:
-<br>描述：验证token,一次有效，调用完token移除，如需多次验证，请调用query方法
+描述：验证token,一次有效，调用完token移除，如需多次验证，请调用query方法
 <br>接口：http://192.168.8.178:8201/token/verify
 <br>HttpMethod：Post
 <br>Post Param：VerifyTokenRequest
