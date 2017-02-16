@@ -1,7 +1,6 @@
-##Create GlobalID:
+##1、Create GlobalID:
 创建全局ID
-<br>api-url: 
-<br>raw:http://127.0.0.1/global/createid?idtype=?&appid=?&module=?
+<br>api-url: http://127.0.0.1/global/createid?idtype=?&appid=?&module=?
 <br>HttpMethod：Get
 <br>Get Param：
 * idtype: 代表请求ID方式，目前支持：UUID、Number、TimeNumber
