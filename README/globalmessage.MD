@@ -3,7 +3,7 @@
 <br>接口: http://127.0.0.1/global/createid?idtype=?&appid=?&module=?
 <br>HttpMethod：Get
 <br>Get Param：
-* idtype: 代表请求ID方式，目前支持：UUID、Number、TimeNumber
+* idtype: 代表请求ID方式，目前支持：uuid、number、timenumber
 * appid: 代表请求的应用
 * module: 代表请求应用某特定模块
 <br>返回结构：HandlerResponse

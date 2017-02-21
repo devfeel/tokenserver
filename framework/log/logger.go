@@ -62,7 +62,7 @@ func Error(log string, logTarget string) {
 }
 
 func Log(log string, logTarget string, logLevel string) {
-	singleLogger.Log(log, logTarget, "error")
+	singleLogger.Log(log, logTarget, logLevel)
 }
 
 func (logger *Logger) Debug(log string, logTarget string) {

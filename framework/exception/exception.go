@@ -5,7 +5,7 @@ import (
 	"os"
 	"runtime"
 
-	"TechService/framework/log"
+	"github.com/devfeel/tokenserver/framework/log"
 )
 
 //统一异常处理
