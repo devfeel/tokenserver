@@ -7,7 +7,7 @@ token服务，提供token一致性服务以及相关的全局ID生成服务等
 * <a href="https://github.com/devfeel/tokenserver/blob/master/README/tokenmessage.MD#3verify-token">Verify Token</a>
 * <a href="https://github.com/devfeel/tokenserver/blob/master/README/globalmessage.MD#1create-globalid">Create GlobalID</a>
 
-##配置说明
+##配置说明 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
