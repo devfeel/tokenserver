@@ -29,3 +29,8 @@ token服务，提供token一致性服务以及相关的全局ID生成服务等
 * app.conf       程序配置文件
 
 *默认配置下，会监听两个端口，一个为业务端口，一个为pprof端口
+
+
+##外部依赖
+* mgo - gopkg.in/mgo.v2/bson
+* redigo - github.com/garyburd/redigo/redis

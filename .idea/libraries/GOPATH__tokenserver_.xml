@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;tokenserver&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../game" />
+      <root url="file://$PROJECT_DIR$/../../../labix.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../thinkingdev" />
+      <root url="file://$PROJECT_DIR$/../../../devfeel" />
+      <root url="file://$PROJECT_DIR$/../../../myapp" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../mylg" />
+      <root url="file://$PROJECT_DIR$/../../../emoney" />
+      <root url="file://$PROJECT_DIR$/../../../datapipe" />
+      <root url="file://$PROJECT_DIR$/../../../9fans.net" />
+      <root url="file://$PROJECT_DIR$/../../../snail-develop" />
+      <root url="file://$PROJECT_DIR$/../../../sourcegraph.com" />
+      <root url="file://D:/Projects/EMoneyGoPath/src/MonitorPlat" />
+      <root url="file://D:/Projects/EMoneyGoPath/src/TechService" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../game" />
+      <root url="file://$PROJECT_DIR$/../../../labix.org" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../thinkingdev" />
+      <root url="file://$PROJECT_DIR$/../../../devfeel" />
+      <root url="file://$PROJECT_DIR$/../../../myapp" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../../mylg" />
+      <root url="file://$PROJECT_DIR$/../../../emoney" />
+      <root url="file://$PROJECT_DIR$/../../../datapipe" />
+      <root url="file://$PROJECT_DIR$/../../../9fans.net" />
+      <root url="file://$PROJECT_DIR$/../../../snail-develop" />
+      <root url="file://$PROJECT_DIR$/../../../sourcegraph.com" />
+      <root url="file://D:/Projects/EMoneyGoPath/src/MonitorPlat" />
+      <root url="file://D:/Projects/EMoneyGoPath/src/TechService" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>
