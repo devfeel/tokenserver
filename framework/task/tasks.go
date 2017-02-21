@@ -1,8 +1,7 @@
 package task
 
 import (
-	"MonitorPlat/Framework/log"
-	"MonitorPlat/OneDistribute/const"
+	"github.com/devfeel/tokenserver/framework/log"
 	"sync"
 	"time"
 )
@@ -117,27 +116,27 @@ func (task *TaskInfo) Stop() {
 
 //remove all task
 func (service *TaskService) RemoveAllTask() {
-	logger.Info("Task::resetAllTask begin...", constdefine.LogTarget_Task)
+	logger.Info("Task::resetAllTask begin...", taskLogTarget)
 	service.StopAllTask()
 	service.taskMap = make(map[string]*TaskInfo)
 }
 
 //结束所有Task
 func (service *TaskService) StopAllTask() {
-	logger.Info("Task::StopAllTask begin...", constdefine.LogTarget_Task)
+	logger.Info("Task::StopAllTask begin...", taskLogTarget)
 	for k, v := range service.taskMap {
-		logger.Info("Task::StopAllTask => "+k, constdefine.LogTarget_Task)
+		logger.Info("Task::StopAllTask => "+k, taskLogTarget)
 		v.Stop()
 	}
-	logger.Info("Task::StopAllTask end["+string(len(service.taskMap))+"]", constdefine.LogTarget_Task)
+	logger.Info("Task::StopAllTask end["+string(len(service.taskMap))+"]", taskLogTarget)
 }
 
 //启动所有Task
 func (service *TaskService) StartAllTask() {
-	logger.Info("Task::StartAllTask begin...", constdefine.LogTarget_Task)
+	logger.Info("Task::StartAllTask begin...", taskLogTarget)
 	for _, v := range service.taskMap {
-		logger.Info("Task::StartAllTask::StartTask => "+v.TaskID, constdefine.LogTarget_Task)
+		logger.Info("Task::StartAllTask::StartTask => "+v.TaskID, taskLogTarget)
 		v.Start()
 	}
-	logger.Info("Task::StartAllTask end", constdefine.LogTarget_Task)
+	logger.Info("Task::StartAllTask end", taskLogTarget)
 }
