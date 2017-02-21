@@ -47,19 +47,19 @@ func InitConfig(configFile string) *AppConfig {
 
 	CurrentConfig = result
 
+	innerLogger.Info("AppConfig::InitConfig Start Load RedisInfo")
 	//初始化RedisMap
 	tmpRedisMap := make(map[string]*RedisInfo)
 	for k, v := range result.Redises {
 		tmpRedisMap[v.ID] = &result.Redises[k]
 		innerLogger.Info("AppConfig::InitConfig Load RedisInfo => " + jsonutil.GetJsonString(v))
 	}
-
 	redisMutex.Lock()
 	redisMap = tmpRedisMap
 	redisMutex.Unlock()
+	innerLogger.Info("AppConfig::InitConfig Finish Load RedisInfo")
 
 	innerLogger.Info("AppConfig::InitConfig 配置文件[" + configFile + "]完成")
-
 	return &CurrentConfig
 }
 

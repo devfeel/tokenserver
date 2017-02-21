@@ -1,5 +1,9 @@
 tokenserver - 通用Token服务
 
+V1.2
+1、GlobalID生成器增加mongodb模式
+2、2017-02-21 14:00 by pxm
+
 V1.1
 1、新增GlobalID生成器功能，第一版支持uuid、number、timenumber
 2、2017-02-16 11:00 by pxm

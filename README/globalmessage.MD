@@ -3,7 +3,7 @@
 <br>接口: http://127.0.0.1/global/createid?idtype=?&appid=?&module=?
 <br>HttpMethod：Get
 <br>Get Param：
-* idtype: 代表请求ID方式，目前支持：uuid、number、timenumber
+* idtype: 代表请求ID方式，目前支持：uuid、number、timenumber、mongodb
 * appid: 代表请求的应用
 * module: 代表请求应用某特定模块
 <br>返回结构：HandlerResponse
@@ -17,3 +17,4 @@
 * UUID - {"RetCode":0,"RetMsg":"ok","Message":"b6b81359c127554ee2a34bb36457026b"}
 * Number - {"RetCode":0,"RetMsg":"","Message":"64"}
 * TimeNumber - {"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
+* MongoDB - {"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
