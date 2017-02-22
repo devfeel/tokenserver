@@ -22,6 +22,18 @@
 curl http://127.0.0.1/global/createid?idtype=uuid&appid=test&module=test 
 {"RetCode":0,"RetMsg":"ok","Message":"b6b81359c127554ee2a34bb36457026b"}
 ```
-* Number - {"RetCode":0,"RetMsg":"","Message":"64"}
-* TimeNumber - {"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
-* MongoDB - {"RetCode":0,"RetMsg":"ok","Message":"58abd9dae138236e64ebfdf8"}
+* Number
+```
+curl http://127.0.0.1/global/createid?idtype=number&appid=test&module=test 
+{"RetCode":0,"RetMsg":"","Message":"64"}
+```
+* TimeNumber
+```
+curl http://127.0.0.1/global/createid?idtype=timenumber&appid=test&module=test 
+{"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
+```
+* MongoDB
+```
+curl http://127.0.0.1/global/createid?idtype=mongodb&appid=test&module=test 
+{"RetCode":0,"RetMsg":"ok","Message":"58abd9dae138236e64ebfdf8"}
+```
