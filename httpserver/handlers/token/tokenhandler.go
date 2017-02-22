@@ -59,8 +59,7 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	}()
 
 	//解析提交数据
-	err_jsonunmar := jsonutil.Unmarshal(postContent, &tokenInfo)
-	if err_jsonunmar != nil {
+	if err_jsonunmar := jsonutil.Unmarshal(postContent, &tokenInfo); err_jsonunmar != nil {
 		result.RetCode = -100001
 		result.RetMsg = "post data not legal => " + err_jsonunmar.Error()
 		return
