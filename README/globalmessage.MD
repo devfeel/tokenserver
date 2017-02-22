@@ -16,7 +16,7 @@
 * -201002：create global number error [redis]
 * Response.Message = GlobalID //string
 
-####示例：Result:
+####示例：
 * UUID - {"RetCode":0,"RetMsg":"ok","Message":"b6b81359c127554ee2a34bb36457026b"}
 * Number - {"RetCode":0,"RetMsg":"","Message":"64"}
 * TimeNumber - {"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
