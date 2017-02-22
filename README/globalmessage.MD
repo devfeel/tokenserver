@@ -1,7 +1,8 @@
 ##1、Create GlobalID:
 描述：创建全局ID
 <br>接口: http://127.0.0.1/global/createid?idtype=?&appid=?&module=?
-<br>HttpMethod：Get
+<br>HttpMethod：Get<br>
+
 Get Param：
 * idtype: 代表请求ID方式，目前支持：uuid、number、timenumber、mongodb
 * appid: 代表请求的应用
@@ -15,7 +16,7 @@ Get Param：
 * -201002：create global number error [redis]
 * Response.Message = GlobalID //string
 
-result:
+示例：Result:
 * UUID - {"RetCode":0,"RetMsg":"ok","Message":"b6b81359c127554ee2a34bb36457026b"}
 * Number - {"RetCode":0,"RetMsg":"","Message":"64"}
 * TimeNumber - {"RetCode":0,"RetMsg":"","Message":"2017021611304200000002"}
