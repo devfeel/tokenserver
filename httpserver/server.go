@@ -11,24 +11,24 @@ import (
 func StartServer() error {
 
 	//初始化DotServer
-	dotweb := dotweb.New()
+	app := dotweb.New()
 
 	//设置dotserver日志目录
-	dotweb.SetLogPath(config.CurrentConfig.Log.FilePath)
+	app.SetLogPath(config.CurrentConfig.Log.FilePath)
 
 	//设置路由
-	InitRoute(dotweb)
+	InitRoute(app)
 
 	innerLogger := logger.GetInnerLogger()
 
 	//启动监控服务
 	pprofport := config.CurrentConfig.HttpServer.PProfPort
-	go dotweb.StartPProfServer(pprofport)
+	app.SetPProfConfig(true, pprofport)
 
 	// 开始服务
 	port := config.CurrentConfig.HttpServer.HttpPort
 	innerLogger.Debug("dotweb.StartServer => " + strconv.Itoa(port))
-	err := dotweb.StartServer(port)
+	err := app.StartServer(port)
 	return err
 }
 

@@ -6,11 +6,11 @@ import (
 	"github.com/devfeel/tokenserver/httpserver/handlers/token"
 )
 
-func InitRoute(dotweb *dotweb.Dotweb) {
+func InitRoute(dotweb *dotweb.DotWeb) {
 	//token
-	dotweb.HttpServer.POST("/token/create", token.CreateToken)
-	dotweb.HttpServer.POST("/token/verify", token.VerifyToken)
-	dotweb.HttpServer.GET("/token/query", token.QueryToken)
+	dotweb.HttpServer.Router().POST("/token/create", token.CreateToken)
+	dotweb.HttpServer.Router().POST("/token/verify", token.VerifyToken)
+	dotweb.HttpServer.Router().GET("/token/query", token.QueryToken)
 	//global
-	dotweb.HttpServer.GET("/global/createid", global.CreateGlobalID)
+	dotweb.HttpServer.Router().GET("/global/createid", global.CreateGlobalID)
 }
