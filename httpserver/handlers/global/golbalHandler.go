@@ -44,7 +44,7 @@ Response.Message = GlobalID //string
 UPDATE LOG:
 1、初始版本 --2017-02-16 11:00 by pxm
 */
-func CreateGlobalID(ctx *dotweb.HttpContext) {
+func CreateGlobalID(ctx dotweb.Context) error {
 	result := &models.HandlerResponse{RetCode: 0, RetMsg: ""}
 	idtype := ctx.QueryString("idtype")
 	appid := ctx.QueryString("appid")   //代表请求的应用
@@ -59,12 +59,12 @@ func CreateGlobalID(ctx *dotweb.HttpContext) {
 	if idtype == "" {
 		result.RetCode = -100001
 		result.RetMsg = "idtype is empty"
-		return
+		return nil
 	}
 	if appid == "" || module == "" {
 		result.RetCode = -100002
 		result.RetMsg = "appid & module is empty"
-		return
+		return nil
 	}
 
 	if idtype == IdType_UUID {
@@ -72,17 +72,17 @@ func CreateGlobalID(ctx *dotweb.HttpContext) {
 		result.RetCode = 0
 		result.RetMsg = "ok"
 		result.Message = code
-		return
+		return nil
 	}
 
 	if idtype == IdType_TimeNumber {
 		createTimeNumberID(appid, module, result)
-		return
+		return nil
 	}
 
 	if idtype == IdType_Number {
 		createNumberID(appid, module, result)
-		return
+		return nil
 	}
 
 	if idtype == IdType_MongoDB {
@@ -90,12 +90,13 @@ func CreateGlobalID(ctx *dotweb.HttpContext) {
 		result.RetCode = 0
 		result.RetMsg = "ok"
 		result.Message = code
-		return
+		return nil
 	}
 
 	//no match idtype
 	result.RetCode = -200001
 	result.RetMsg = "idtype[" + idtype + "] is not support"
+	return nil
 }
 
 //基于Redis创建连续数字

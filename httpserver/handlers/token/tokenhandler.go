@@ -47,11 +47,11 @@ Response.Message = TokenInfo
 UPDATE LOG:
 1、初始版本 --2017-02-10 12:00 by pxm
 */
-func CreateToken(ctx *dotweb.HttpContext) {
+func CreateToken(ctx dotweb.Context) error{
 	result := &models.HandlerResponse{RetCode: 0, RetMsg: ""}
 	var tokenInfo TokenInfo
 	//获取Post内容
-	postContent := string(ctx.PostBody())
+	postContent := string(ctx.Request().PostBody())
 
 	defer func() {
 		logger.Info("TokenServer::CreateToken["+postContent+"] => "+jsonutil.GetJsonString(result), constdefine.LogTarget_Token)
@@ -62,12 +62,12 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	if err_jsonunmar := jsonutil.Unmarshal(postContent, &tokenInfo); err_jsonunmar != nil {
 		result.RetCode = -100001
 		result.RetMsg = "post data not legal => " + err_jsonunmar.Error()
-		return
+		return nil
 	}
 	if tokenInfo.AppID == "" {
 		result.RetCode = -100002
 		result.RetMsg = "AppID is empty"
-		return
+		return nil
 	}
 	//默认值处理
 	if tokenInfo.LifeSeconds <= 0 {
@@ -79,7 +79,7 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	if !exists {
 		result.RetCode = -200001
 		result.RetMsg = "no config RedisID_Token Redis"
-		return
+		return nil
 	}
 
 	//创建token
@@ -87,7 +87,7 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	if token == "" {
 		result.RetCode = -200002
 		result.RetMsg = "create token error [uuid]"
-		return
+		return nil
 	}
 	tokenInfo.Token = token
 
@@ -98,7 +98,7 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	if err != nil {
 		result.RetCode = -200003
 		result.RetMsg = "create token error [redis set] => " + err.Error()
-		return
+		return nil
 	}
 
 	result.RetCode = 0
@@ -107,6 +107,8 @@ func CreateToken(ctx *dotweb.HttpContext) {
 	//设置原子锁，默认有效期为token的两倍，初始值为1
 	key = redisInfo.KeyPre + ":TokenLock:" + tokenInfo.AppID + "_" + tokenInfo.Token
 	redisClient.SetWithExpire(key, "1", tokenInfo.LifeSeconds*2)
+
+	return nil
 }
 
 /*验证token
@@ -132,11 +134,11 @@ Response.Message = TokenInfo
 UPDATE LOG:
 1、初始版本 --2017-02-10 12:00 by pxm
 */
-func VerifyToken(ctx *dotweb.HttpContext) {
+func VerifyToken(ctx dotweb.Context) error{
 	result := &models.HandlerResponse{RetCode: 0, RetMsg: ""}
 	var verifyToken VerifyTokenRequest
 	//获取Post内容
-	postContent := string(ctx.PostBody())
+	postContent := string(ctx.Request().PostBody())
 
 	defer func() {
 		logger.Info("TokenServer::VerifyToken["+postContent+"] => "+jsonutil.GetJsonString(result), constdefine.LogTarget_Token)
@@ -148,12 +150,12 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 	if err_jsonunmar != nil {
 		result.RetCode = -100001
 		result.RetMsg = "post data not legal => " + err_jsonunmar.Error()
-		return
+		return nil
 	}
 	if verifyToken.AppID == "" {
 		result.RetCode = -100002
 		result.RetMsg = "AppID is empty"
-		return
+		return nil
 	}
 
 	//获取Redis配置
@@ -161,7 +163,7 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 	if !exists {
 		result.RetCode = -200001
 		result.RetMsg = "no config RedisID_Token Redis"
-		return
+		return nil
 	}
 
 	keyLocker := redisInfo.KeyPre + ":TokenLock:" + verifyToken.AppID + "_" + verifyToken.Token
@@ -176,12 +178,12 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 	if errExists != nil {
 		result.RetCode = -201001
 		result.RetMsg = "query token exists error => " + errExists.Error()
-		return
+		return nil
 	}
 	if numExists == 0 {
 		result.RetCode = -201002
 		result.RetMsg = "redis token not exists"
-		return
+		return nil
 	}
 
 	//加锁
@@ -189,14 +191,14 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 	if errIncr != nil {
 		result.RetCode = -202001
 		result.RetMsg = "get token-locker error => " + errIncr.Error()
-		return
+		return nil
 	}
 	if valIncr != 0 {
 		result.RetCode = -202002
 		result.RetMsg = "token-locker locked by other [" + strconv.Itoa(valIncr) + "]"
 		//归还当前锁
 		redisClient.INCR(keyLocker)
-		return
+		return nil
 	}
 
 	var redisToken TokenInfo
@@ -207,7 +209,7 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 		result.RetMsg = "query token error => " + errToken.Error()
 		//归还当前锁
 		redisClient.INCR(keyLocker)
-		return
+		return nil
 	}
 	err_jsonunmar = jsonutil.Unmarshal(valToken, &redisToken)
 	if err_jsonunmar != nil {
@@ -215,7 +217,7 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 		result.RetMsg = "redis token data not legal [" + valToken + "] => " + err_jsonunmar.Error()
 		//归还当前锁
 		redisClient.INCR(keyLocker)
-		return
+		return nil
 	}
 	if verifyToken.IsCheckBody {
 		if verifyToken.TokenBody != redisToken.TokenBody {
@@ -223,7 +225,7 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 			result.RetMsg = "token body is not match [" + valToken + "]"
 			//归还当前锁
 			redisClient.INCR(keyLocker)
-			return
+			return nil
 		}
 	}
 
@@ -233,6 +235,8 @@ func VerifyToken(ctx *dotweb.HttpContext) {
 	//一切正常，删除相关token信息
 	redisClient.Del(keyLocker)
 	redisClient.Del(keyToken)
+
+	return nil
 }
 
 /*查询token
@@ -252,20 +256,20 @@ Response.Message = TokenInfo
 UPDATE LOG:
 1、初始版本 --2017-02-10 12:00 by pxm
 */
-func QueryToken(ctx *dotweb.HttpContext) {
+func QueryToken(ctx dotweb.Context) error{
 	result := &models.HandlerResponse{RetCode: 0, RetMsg: ""}
 	token := ctx.QueryString("token")
 	appId := ctx.QueryString("appid")
 
 	defer func() {
-		logger.Info("TokenServer::QueryToken["+ctx.RawQuery()+"] => "+jsonutil.GetJsonString(result), constdefine.LogTarget_Token)
+		logger.Info("TokenServer::QueryToken["+ctx.Request().RawQuery()+"] => "+jsonutil.GetJsonString(result), constdefine.LogTarget_Token)
 		ctx.WriteJson(result)
 	}()
 
 	if token == "" || appId == "" {
 		result.RetCode = -100001
 		result.RetMsg = "querystring token|appid is empty"
-		return
+		return nil
 	}
 
 	//处理数据
@@ -273,7 +277,7 @@ func QueryToken(ctx *dotweb.HttpContext) {
 	if !exists {
 		result.RetCode = -200001
 		result.RetMsg = "no config RedisID_Token Redis"
-		return
+		return nil
 	}
 	key := redisInfo.KeyPre + ":Token:" + appId + "_" + token
 	redisClient := redisutil.GetRedisClient(redisInfo.ServerIP)
@@ -281,16 +285,17 @@ func QueryToken(ctx *dotweb.HttpContext) {
 	if err != nil {
 		result.RetCode = -200002
 		result.RetMsg = "query token error [get] => " + err.Error()
-		return
+		return nil
 	}
 
 	if val == "" {
 		result.RetCode = -200003
 		result.RetMsg = "query token not exists"
-		return
+		return nil
 	}
 
 	result.RetCode = 0
 	result.RetMsg = "ok"
 	result.Message = val
+	return nil
 }
